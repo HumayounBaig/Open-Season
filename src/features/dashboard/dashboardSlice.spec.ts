@@ -3,7 +3,7 @@ import counterReducer, {
   increment,
   decrement,
   incrementByAmount,
-} from "./dashboardSlice"
+} from "./weatherSlice"
 
 describe("counter reducer", () => {
   const initialState: CounterState = {
