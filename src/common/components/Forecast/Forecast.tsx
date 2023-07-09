@@ -6,25 +6,35 @@ import {
 } from "./Forecast.styles"
 import { AppImage } from "../AppImage/AppImage"
 import { FlexWrapper } from "../../styles/CommonStyles"
+import { createIconUrl } from "../../../helpers"
 
-export const Forecast: React.FC<{ title: string }> = ({ title }) => {
-  const ForcastCard = () => (
-    <ForecastCardWrapper>
-      <p>04:30pm</p>
-      <AppImage
-        src="http://openweathermap.org/img/wn/01d@2x.png"
-        alt="weather-symbol"
-      />
-      <p>22°</p>
-    </ForecastCardWrapper>
-  )
+const ForcastCard = ({
+  item: { title, icon, temp },
+}: {
+  item: {
+    title: string
+    icon: string
+    temp: number
+  }
+}) => (
+  <ForecastCardWrapper>
+    <p>{title}</p>
+    <AppImage src={createIconUrl(icon)} alt="weather-symbol" />
+    <p>{temp.toFixed()}°</p>
+  </ForecastCardWrapper>
+)
+
+export const Forecast: React.FC<{ title: string; items: any[] }> = ({
+  title,
+  items,
+}) => {
   return (
     <ForecastContainer>
       <Header>{title}</Header>
       <hr />
       <FlexWrapper>
-        {[1, 2, 3, 4, 5].map((item) => (
-          <ForcastCard />
+        {items.map((today) => (
+          <ForcastCard item={today} />
         ))}
       </FlexWrapper>
     </ForecastContainer>

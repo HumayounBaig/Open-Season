@@ -4,14 +4,22 @@ import {
   LocationContainer,
   LocationHeading,
 } from "./LocationInfo.styles"
+import { formatToLocalTime } from "../../../helpers"
 
-export const LocationInfo = () => {
+export const LocationInfo: React.FC<{
+  weather: {
+    dt: number
+    timezone: string
+    name: string
+    country: string
+  }
+}> = ({ weather: { dt, timezone, name, country } }) => {
   return (
     <LocationContainer>
-      <DateTimePreHeading>
-        Tuesday, 31 may 2023 | local time: 7:20pm{" "}
-      </DateTimePreHeading>
-      <LocationHeading>Karachi, PK</LocationHeading>
+      <DateTimePreHeading>{formatToLocalTime(dt, timezone)}</DateTimePreHeading>
+      <LocationHeading>
+        {name}, {country}
+      </LocationHeading>
     </LocationContainer>
   )
 }

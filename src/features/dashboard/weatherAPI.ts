@@ -56,7 +56,7 @@ export const formatForeCastWeather = (data: any) => {
     .map((d: { dt: number; temp: { day: any }; weather: { icon: any }[] }) => {
       return {
         title: formatToLocalTime(d?.dt, timezone, "hh:mm a"),
-        temp: d.temp.day,
+        temp: d.temp,
         icon: d?.weather?.[0].icon,
       }
     })
@@ -89,6 +89,7 @@ export const weatherApi = createApi({
         params: {
           lat: queryArg.lat,
           lon: queryArg.lon,
+          units: queryArg.metric || "metric",
           exclude: "current,minutely,alerts",
           appid: import.meta.env.VITE_OPEN_WEATHER_API_KEY,
         },

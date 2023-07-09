@@ -1,6 +1,5 @@
 import { useState } from "react"
 
-import { useGetHourlyWeatherDataQuery, useGetWeatherQuery } from "./weatherAPI"
 import useGeoLocation from "../../app/useGeolocation"
 import { TailSpin } from "react-loader-spinner"
 import { FlexWrapper } from "../../common/styles/CommonStyles"
@@ -14,12 +13,14 @@ import { useWeatherData } from "./hooks/useWeatherData"
 export function Dashboard() {
   const { latitude, longitude, error } = useGeoLocation()
 
-  const { data, isLoading, isError } = useWeatherData(
-    latitude || 0,
-    longitude || 0,
-  )
+  const {
+    data: weather,
+    isLoading,
+    isError,
+  } = useWeatherData(latitude || 0, longitude || 0)
 
-  console.log("data", data)
+  const [searchQuery, setSearchQuery] = useState("")
+
   console.log("isLoading", isLoading)
   console.log("error", error)
 
@@ -43,10 +44,10 @@ export function Dashboard() {
   return (
     <DashboardContainer>
       <Search />
-      <LocationInfo />
-      <TemperatureDetails />
-      <Forecast title="Hourly Forecast" />
-      <Forecast title="daily Forecast" />
+      <LocationInfo weather={weather} />
+      <TemperatureDetails weather={weather} />
+      <Forecast items={weather.hourly} title="Hourly Forecast" />
+      <Forecast items={weather.daily} title="daily Forecast" />
     </DashboardContainer>
   )
 }
