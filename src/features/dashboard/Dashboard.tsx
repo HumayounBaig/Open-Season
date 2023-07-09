@@ -11,18 +11,15 @@ import { Forecast } from "../../common/components/Forecast/Forecast"
 import { useWeatherData } from "./hooks/useWeatherData"
 
 export function Dashboard() {
-  const { latitude, longitude, error } = useGeoLocation()
+  const [searchQuery, setSearchQuery] = useState("")
+  const [unit, setUnit] = useState<"metric" | "imperial">("metric")
 
+  const { latitude, longitude, error } = useGeoLocation()
   const {
     data: weather,
     isLoading,
     isError,
-  } = useWeatherData(latitude || 0, longitude || 0)
-
-  const [searchQuery, setSearchQuery] = useState("")
-
-  console.log("isLoading", isLoading)
-  console.log("error", error)
+  } = useWeatherData(latitude || 0, longitude || 0, unit)
 
   if (isLoading) {
     return (
@@ -43,7 +40,7 @@ export function Dashboard() {
 
   return (
     <DashboardContainer>
-      <Search />
+      <Search searchQuery setSearchQuery unit={unit} setUnit={setUnit} />
       <LocationInfo weather={weather} />
       <TemperatureDetails weather={weather} />
       <Forecast items={weather.hourly} title="Hourly Forecast" />

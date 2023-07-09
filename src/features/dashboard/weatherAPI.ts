@@ -5,6 +5,7 @@ export type GetWeatherApiArg = {
   lat: number
   lon: number
   metric?: "metric" | "imperial"
+  searchQuery?: string
 }
 
 const formatCurrentWeather = (data: any) => {
@@ -75,6 +76,7 @@ export const weatherApi = createApi({
           lon: queryArg.lon,
           units: queryArg.metric || "metric",
           appid: import.meta.env.VITE_OPEN_WEATHER_API_KEY,
+          q: queryArg.searchQuery || "",
         },
       }),
       transformResponse: (response: any) => {
@@ -103,4 +105,9 @@ export const weatherApi = createApi({
   }),
 })
 
-export const { useGetWeatherQuery, useGetHourlyWeatherDataQuery } = weatherApi
+export const {
+  useGetWeatherQuery,
+  useGetHourlyWeatherDataQuery,
+  useLazyGetHourlyWeatherDataQuery,
+  useLazyGetWeatherQuery,
+} = weatherApi

@@ -33,8 +33,8 @@ export const Forecast: React.FC<{ title: string; items: any[] }> = ({
       <Header>{title}</Header>
       <hr />
       <FlexWrapper>
-        {items.map((today) => (
-          <ForcastCard item={today} />
+        {items.map((today, index) => (
+          <ForcastCard key={index} item={today} />
         ))}
       </FlexWrapper>
     </ForecastContainer>
