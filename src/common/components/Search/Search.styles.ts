@@ -11,6 +11,7 @@ export const SearchContainer = styled.div`
   .search-icon {
     color: white;
     cursor: pointer;
+    font-size: 20px;
   }
 `
 export const SearchBar = styled.input`
@@ -19,6 +20,9 @@ export const SearchBar = styled.input`
   padding: 0.5rem;
   width: 100%;
   outline: none;
+  border: none;
+  box-shadow: none;
+  border-radius: 20px;
   text-transform: capitalize;
 
   &:focus {

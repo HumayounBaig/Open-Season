@@ -26,18 +26,20 @@ export const Search = ({ setSearchQuery, unit, setUnit }: any) => {
       <Logo>Open Season</Logo>
       <SearchBar
         value={city}
-        onChange={(e) => setCity(e.target.value)}
+        onChange={(e: { target: { value: React.SetStateAction<string> } }) =>
+          setCity(e.target.value)
+        }
         type="text"
         placeholder="search for a city..."
       />
       <FaMagnifyingGlass onClick={handleSearch} className="search-icon" />
 
       <FlexWrapper>
-        <MetricButton onClick={handleUnitsChange} className="metric">
+        <MetricButton onClick={handleUnitsChange} name="imperial">
           °F
         </MetricButton>
         <Separator>|</Separator>
-        <MetricButton onClick={handleUnitsChange} className="imperial">
+        <MetricButton onClick={handleUnitsChange} name="metric">
           °C
         </MetricButton>
       </FlexWrapper>

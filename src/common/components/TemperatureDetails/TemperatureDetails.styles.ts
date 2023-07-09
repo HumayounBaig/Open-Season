@@ -2,14 +2,16 @@ import { styled } from "styled-components"
 import { FlexWrapper } from "../../styles/CommonStyles"
 
 export const TemperatureContainer = styled.div`
-  padding: 32px;
+  padding: 24px;
+  padding-top: 12px;
 `
 
 export const WeatherStatus = styled.div`
-  font-weight: 300;
+  font-weight: 400;
   color: cyan;
   font-size: 20px;
   padding-block: 24px;
+  text-align: center;
 `
 
 export const TemperatureHeading = styled.div`
