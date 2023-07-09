@@ -42,3 +42,11 @@ export const Separator = styled.p`
   margin-inline: 4px;
   padding-bottom: 4px;
 `
+
+export const Logo = styled.div`
+  color: white;
+  font-weight: bold;
+  font-family: fantasy;
+  text-align: left;
+  user-select: none;
+`

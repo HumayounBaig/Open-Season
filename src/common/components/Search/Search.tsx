@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import {
+  Logo,
   MetricButton,
   SearchBar,
   SearchContainer,
@@ -22,6 +23,7 @@ export const Search = ({ setSearchQuery, unit, setUnit }: any) => {
 
   return (
     <SearchContainer>
+      <Logo>Open Season</Logo>
       <SearchBar
         value={city}
         onChange={(e) => setCity(e.target.value)}
