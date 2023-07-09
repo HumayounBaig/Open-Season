@@ -4,7 +4,7 @@ export const SearchContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 75%;
+
   & > * + * {
     margin-left: 16px;
   }
