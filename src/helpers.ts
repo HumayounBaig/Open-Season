@@ -1,4 +1,5 @@
 import { DateTime, Zone } from "luxon"
+import { toast } from "react-toastify"
 
 export const formatToLocalTime = (
 	seconds: number,
@@ -14,3 +15,7 @@ export const formatToLocalTime = (
 
 export const createIconUrl = (code: string) =>
 	`http://openweathermap.org/img/wn/${code}@2x.png`
+
+export const showNotification = (msg: string) => {
+	toast(msg)
+}
